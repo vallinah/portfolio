@@ -1,9 +1,18 @@
 @import 'tailwindcss';
 
+@theme {
+  --font-sans: 'Inter', sans-serif;
+  --font-heading: 'Poppins', sans-serif;
+}
+
 :root {
-  font-family: system-ui, sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 body {
   margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
