@@ -1,4 +1,4 @@
-import { Mail } from "lucide-react";
+import { Mail } from 'lucide-react';
 
 function Contact() {
   return (
@@ -18,7 +18,7 @@ function Contact() {
 
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:mt-10 sm:flex-row sm:gap-4">
           <a
-            href="mailto:ton-email@example.com"
+            href="mailto:otisoavallinah@gmail.com"
             className="inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-sans font-medium text-white transition-colors duration-200 hover:bg-blue-700 sm:w-auto"
           >
             <Mail size={20} />
@@ -26,7 +26,7 @@ function Contact() {
           </a>
 
           <a
-            href="https://github.com/"
+            href="https://github.com/vallinah"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-6 py-3 font-sans font-medium text-slate-900 transition-colors duration-200 hover:bg-slate-100 sm:w-auto"
@@ -35,7 +35,7 @@ function Contact() {
           </a>
 
           <a
-            href="https://www.linkedin.com/"
+            href="https://www.linkedin.com/in/vallinah-andriamasinoro-461948350/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-6 py-3 font-sans font-medium text-slate-900 transition-colors duration-200 hover:bg-slate-100 sm:w-auto"

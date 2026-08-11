@@ -1,42 +1,42 @@
 function Experience() {
   const experiences = [
     {
-      title: "Développeur Web",
-      company: "Projet professionnel",
-      period: "Juillet 2026",
+      title: 'Développeur Web',
+      company: 'Projet professionnel',
+      period: 'Juillet 2026',
       description:
         "Analyse et amélioration d'un projet web existant à travers des revues de code, l'identification d'issues Git et la proposition d'améliorations. Coordination et accompagnement d'une équipe durant le projet.",
-      technologies: ["Git", "GitHub", "Code Review"],
+      technologies: ['Git', 'GitHub', 'Code Review'],
     },
     {
-      title: "Développeur Web",
-      company: "Projet professionnel",
-      period: "Mai 2026",
+      title: 'Développeur Web',
+      company: 'Projet professionnel',
+      period: 'Mai 2026',
       description:
         "Conception et développement d'une landing page pour un site web.",
-      technologies: ["React", "TypeScript", "Tailwind CSS"],
+      technologies: ['React', 'TypeScript', 'Tailwind CSS'],
     },
     {
-      title: "Développeur Web — Stage",
-      company: "Expérience professionnelle",
-      period: "2025",
+      title: 'Développeur Web — Stage',
+      company: 'Expérience professionnelle',
+      period: '2025',
       description:
         "Participation au développement et à l'intégration de fonctionnalités web dans un environnement professionnel.",
       technologies: [
-        "Java",
-        "Spring Boot",
-        "JavaScript",
-        "React",
-        "PostgreSQL",
+        'Java',
+        'Spring Boot',
+        'JavaScript',
+        'React',
+        'PostgreSQL',
       ],
     },
     {
-      title: "Projets personnels",
-      company: "Développement personnel",
+      title: 'Projets personnels',
+      company: 'Développement personnel',
       period: "2024 — Aujourd'hui",
       description:
-        "Conception et développement de plusieurs applications web et projets logiciels afin de mettre en pratique mes compétences en développement frontend et backend.",
-      technologies: ["Java", "React", "TypeScript", "Laravel"],
+        'Conception et développement de plusieurs applications web et projets logiciels afin de mettre en pratique mes compétences en développement frontend et backend.',
+      technologies: ['Java', 'React', 'TypeScript', 'Laravel'],
     },
   ];
 

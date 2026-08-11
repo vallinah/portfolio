@@ -1,32 +1,36 @@
 function Skills() {
   const skillGroups = [
     {
-      title: "Frontend",
+      title: 'Frontend',
       skills: [
-        "React",
-        "TypeScript",
-        "JavaScript",
-        "HTML",
-        "CSS",
-        "Tailwind CSS",
+        'React',
+        'Vue.js',
+        'TypeScript',
+        'JavaScript',
+        'HTML',
+        'CSS',
+        'Tailwind CSS',
       ],
     },
     {
-      title: "Backend",
-      skills: ["Java", "Spring Boot", "C#", ".NET", "PHP", "Laravel"],
+      title: 'Backend',
+      skills: ['Java', 'Spring Boot', 'C#', '.NET', 'PHP', 'Laravel'],
     },
     {
-      title: "Bases de données",
-      skills: ["PostgreSQL", "MySQL", "Oracle", "SQL Server", "MongoDB"],
+      title: 'Bases de données',
+      skills: ['PostgreSQL', 'MySQL', 'Oracle', 'SQL Server', 'MongoDB'],
     },
     {
-      title: "Outils",
-      skills: ["Git", "GitHub", "Docker", "Linux"],
+      title: 'Outils',
+      skills: ['Git', 'GitHub', 'Docker', 'Linux'],
     },
   ];
 
   return (
-    <section id="skills" className="scroll-mt-20 sm:scroll-mt-0 bg-slate-50 px-4 py-16 sm:px-6 sm:py-20">
+    <section
+      id="skills"
+      className="scroll-mt-20 sm:scroll-mt-0 bg-slate-50 px-4 py-16 sm:px-6 sm:py-20"
+    >
       <div className="mx-auto max-w-6xl">
         <h2 className="text-center font-heading text-3xl font-bold text-slate-900 sm:text-4xl">
           Compétences

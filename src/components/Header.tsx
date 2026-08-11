@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -75,10 +75,10 @@ function Header() {
           type="button"
           className="rounded-md p-2 text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 md:hidden"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+          aria-label={isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
           aria-expanded={isMenuOpen}
         >
-          {isMenuOpen ? "✕" : "☰"}
+          {isMenuOpen ? '✕' : '☰'}
         </button>
       </nav>
 
@@ -144,8 +144,8 @@ function Header() {
           </div>
         </div>
       )}
-          </header>
-        );
-      }
+    </header>
+  );
+}
 
 export default Header;

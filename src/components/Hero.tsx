@@ -18,8 +18,8 @@ function Hero() {
         </h2>
 
         <p className="mx-auto mt-5 max-w-2xl font-sans text-sm leading-6 text-slate-600 sm:mt-6 sm:text-lg sm:leading-7">
-          Je conçois et développe des applications web modernes, performantes
-          et adaptées aux besoins des utilisateurs.
+          De l’idée à la réalisation, je vous accompagne dans l’étude, la
+          conception et le développement de vos solutions numériques.
         </p>
 
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
@@ -28,6 +28,14 @@ function Hero() {
             className="inline-flex w-full max-w-xs items-center justify-center rounded-lg bg-blue-600 px-6 py-3 font-sans font-medium text-white transition-colors duration-200 hover:bg-blue-700 sm:w-auto"
           >
             Voir mes projets
+          </a>
+
+          <a
+            href="/cv.pdf"
+            download
+            className="inline-flex w-full max-w-xs items-center justify-center rounded-lg border border-blue-600 bg-white px-6 py-3 font-sans font-medium text-blue-600 transition-colors duration-200 hover:bg-blue-50 sm:w-auto"
+          >
+            Télécharger mon CV
           </a>
 
           <a

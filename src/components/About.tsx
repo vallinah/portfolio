@@ -21,9 +21,9 @@ function About() {
           </p>
 
           <p className="indent-6 font-sans text-sm leading-6 text-slate-600 sm:text-lg sm:leading-7">
-            Je cherche constamment à améliorer mes compétences et à découvrir
-            de nouvelles technologies afin de construire des solutions
-            efficaces et maintenables.
+            Je cherche constamment à améliorer mes compétences et à découvrir de
+            nouvelles technologies afin de construire des solutions efficaces et
+            maintenables.
           </p>
         </div>
       </div>
