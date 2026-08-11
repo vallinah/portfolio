@@ -18,15 +18,15 @@ function Education() {
   return (
     <section
       id="education"
-      className="scroll-mt-20 sm:scroll-mt-0 bg-white px-6 py-20"
+      className="scroll-mt-20 bg-white px-6 py-20 transition-colors duration-300 dark:bg-slate-900 sm:scroll-mt-0"
     >
       <div className="mx-auto max-w-4xl">
         <div className="text-center">
-          <h2 className="font-heading text-3xl font-bold text-slate-900 sm:text-4xl">
+          <h2 className="font-heading text-3xl font-bold text-slate-900 transition-colors duration-300 dark:text-white sm:text-4xl">
             Formation
           </h2>
 
-          <p className="mx-auto mt-4 max-w-2xl font-sans text-slate-600">
+          <p className="mx-auto mt-4 max-w-2xl font-sans text-slate-600 transition-colors duration-300 dark:text-slate-400">
             Mon parcours académique et ma formation en informatique.
           </p>
         </div>
@@ -35,28 +35,28 @@ function Education() {
           {education.map((item) => (
             <article
               key={item.title}
-              className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
+              className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md dark:border-slate-700 dark:bg-slate-950"
             >
               <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                 <div>
-                  <h3 className="font-heading text-xl font-semibold text-slate-900">
+                  <h3 className="font-heading text-xl font-semibold text-slate-900 transition-colors duration-300 dark:text-white">
                     {item.title}
                   </h3>
 
-                  <p className="mt-1 font-sans font-medium text-blue-600">
+                  <p className="mt-1 font-sans font-medium text-blue-600 dark:text-blue-400">
                     {item.institution}
                   </p>
                 </div>
 
                 {item.period && (
-                  <span className="font-sans text-sm font-medium text-slate-500">
+                  <span className="font-sans text-sm font-medium text-slate-500 dark:text-slate-400">
                     {item.period}
                   </span>
                 )}
               </div>
 
               {item.description && (
-                <p className="mt-4 font-sans leading-7 text-slate-600">
+                <p className="mt-4 font-sans leading-7 text-slate-600 transition-colors duration-300 dark:text-slate-400">
                   {item.description}
                 </p>
               )}

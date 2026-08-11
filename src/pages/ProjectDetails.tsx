@@ -180,16 +180,16 @@ function ProjectDetails() {
 
   if (!project) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-slate-50 px-4">
+      <main className="flex min-h-screen items-center justify-center bg-slate-50 px-4 transition-colors duration-300 dark:bg-slate-950">
         <div className="text-center">
-          <h1 className="font-heading text-3xl font-bold text-slate-900">
+          <h1 className="font-heading text-3xl font-bold text-slate-900 dark:text-white">
             Projet introuvable
           </h1>
 
           <button
             type="button"
             onClick={goToProjects}
-            className="mt-6 inline-flex items-center gap-2 font-sans text-sm font-semibold text-blue-600 transition-colors hover:text-blue-700"
+            className="mt-6 inline-flex items-center gap-2 font-sans text-sm font-semibold text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
           >
             <ArrowLeft size={17} />
             Retour aux projets
@@ -200,12 +200,12 @@ function ProjectDetails() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 px-4 py-16 sm:px-6 sm:py-20">
+    <main className="min-h-screen bg-slate-50 px-4 py-16 transition-colors duration-300 dark:bg-slate-950 sm:px-6 sm:py-20">
       <div className="mx-auto max-w-4xl">
         <button
           type="button"
           onClick={goToProjects}
-          className="inline-flex items-center gap-2 font-sans text-sm font-medium text-slate-600 transition-colors hover:text-blue-600"
+          className="inline-flex items-center gap-2 font-sans text-sm font-medium text-slate-600 transition-colors hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
         >
           <ArrowLeft size={17} />
           Retour aux projets
@@ -214,11 +214,11 @@ function ProjectDetails() {
         <div className="mt-8">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
-              <p className="font-sans text-sm font-medium text-blue-600">
+              <p className="font-sans text-sm font-medium text-blue-600 dark:text-blue-400">
                 {project.category}
               </p>
 
-              <h1 className="mt-2 font-heading text-3xl font-bold text-slate-900 sm:text-5xl">
+              <h1 className="mt-2 font-heading text-3xl font-bold text-slate-900 dark:text-white sm:text-5xl">
                 {project.title}
               </h1>
             </div>
@@ -226,41 +226,41 @@ function ProjectDetails() {
             <span
               className={`w-fit rounded-full px-3 py-1 text-xs font-medium ${
                 project.status === 'En cours'
-                  ? 'bg-amber-50 text-amber-700'
-                  : 'bg-green-50 text-green-700'
+                  ? 'bg-amber-50 text-amber-700 dark:bg-amber-950 dark:text-amber-300'
+                  : 'bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300'
               }`}
             >
               {project.status}
             </span>
           </div>
 
-          <p className="mt-6 font-sans text-base leading-7 text-slate-600 sm:text-lg">
+          <p className="mt-6 font-sans text-base leading-7 text-slate-600 dark:text-slate-400 sm:text-lg">
             {project.description}
           </p>
 
           <div className="mt-10 grid gap-8">
             <section>
-              <h2 className="font-heading text-xl font-semibold text-slate-900">
+              <h2 className="font-heading text-xl font-semibold text-slate-900 dark:text-white">
                 Motivation
               </h2>
 
-              <p className="mt-3 font-sans leading-7 text-slate-600">
+              <p className="mt-3 font-sans leading-7 text-slate-600 dark:text-slate-400">
                 {project.motivation}
               </p>
             </section>
 
             <section>
-              <h2 className="font-heading text-xl font-semibold text-slate-900">
+              <h2 className="font-heading text-xl font-semibold text-slate-900 dark:text-white">
                 État du projet
               </h2>
 
-              <p className="mt-3 font-sans leading-7 text-slate-600">
+              <p className="mt-3 font-sans leading-7 text-slate-600 dark:text-slate-400">
                 {project.state}
               </p>
             </section>
 
             <section>
-              <h2 className="font-heading text-xl font-semibold text-slate-900">
+              <h2 className="font-heading text-xl font-semibold text-slate-900 dark:text-white">
                 Fonctionnalités
               </h2>
 
@@ -268,7 +268,7 @@ function ProjectDetails() {
                 {project.features.map((feature) => (
                   <li
                     key={feature}
-                    className="font-sans leading-7 text-slate-600"
+                    className="font-sans leading-7 text-slate-600 dark:text-slate-400"
                   >
                     • {feature}
                   </li>
@@ -277,7 +277,7 @@ function ProjectDetails() {
             </section>
 
             <section>
-              <h2 className="font-heading text-xl font-semibold text-slate-900">
+              <h2 className="font-heading text-xl font-semibold text-slate-900 dark:text-white">
                 Technologies
               </h2>
 
@@ -285,7 +285,7 @@ function ProjectDetails() {
                 {project.technologies.map((technology) => (
                   <span
                     key={technology}
-                    className="rounded-md bg-blue-50 px-3 py-1.5 font-sans text-sm font-medium text-blue-700"
+                    className="rounded-md bg-blue-50 px-3 py-1.5 font-sans text-sm font-medium text-blue-700 dark:bg-blue-950 dark:text-blue-300"
                   >
                     {technology}
                   </span>
@@ -294,11 +294,11 @@ function ProjectDetails() {
             </section>
 
             <section>
-              <h2 className="font-heading text-xl font-semibold text-slate-900">
+              <h2 className="font-heading text-xl font-semibold text-slate-900 dark:text-white">
                 Difficulté technique
               </h2>
 
-              <p className="mt-3 font-sans leading-7 text-slate-600">
+              <p className="mt-3 font-sans leading-7 text-slate-600 dark:text-slate-400">
                 {project.difficulty}
               </p>
             </section>
@@ -320,7 +320,7 @@ function ProjectDetails() {
             <button
               type="button"
               onClick={goToProjects}
-              className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-3 font-sans text-sm font-medium text-slate-900 transition-colors hover:bg-slate-100"
+              className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-3 font-sans text-sm font-medium text-slate-900 transition-colors hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
             >
               <ArrowLeft size={17} />
               Retour aux projets
