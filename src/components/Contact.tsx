@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Mail } from 'lucide-react';
 
 function Contact() {
@@ -7,6 +7,52 @@ function Contact() {
     email: '',
     message: '',
   });
+
+  const [successMessage, setSuccessMessage] = useState('');
+
+  useEffect(() => {
+    const checkForPendingMessage = () => {
+      const messagePending = sessionStorage.getItem(
+        'contactMessagePending',
+      );
+
+      if (messagePending === 'true') {
+        setSuccessMessage(
+          'Si votre message a bien été envoyé, il sera pris en compte. Merci !',
+        );
+
+        sessionStorage.removeItem('contactMessagePending');
+
+        window.setTimeout(() => {
+          setSuccessMessage('');
+        }, 8000);
+      }
+    };
+
+    // Vérifie au chargement de la page
+    checkForPendingMessage();
+
+    // Vérifie lorsque le navigateur redonne le focus à la page
+    window.addEventListener('focus', checkForPendingMessage);
+
+    // Vérifie lorsque la page est restaurée
+    window.addEventListener('pageshow', checkForPendingMessage);
+
+    // Vérifie lorsque la page redevient visible
+    document.addEventListener(
+      'visibilitychange',
+      checkForPendingMessage,
+    );
+
+    return () => {
+      window.removeEventListener('focus', checkForPendingMessage);
+      window.removeEventListener('pageshow', checkForPendingMessage);
+      document.removeEventListener(
+        'visibilitychange',
+        checkForPendingMessage,
+      );
+    };
+  }, []);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -51,6 +97,10 @@ Email : ${email}
 Message :
 ${message}`;
 
+    // On mémorise que l'utilisateur a lancé un envoi
+    sessionStorage.setItem('contactMessagePending', 'true');
+
+    // Ouverture de l'application de messagerie
     window.location.href = `mailto:otisoavallinah@gmail.com?subject=${encodeURIComponent(
       subject,
     )}&body=${encodeURIComponent(body)}`;
@@ -169,6 +219,15 @@ ${message}`;
             </button>
           </div>
         </form>
+
+        {successMessage && (
+          <p
+            role="status"
+            className="mt-4 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-center font-sans text-sm text-green-700 dark:border-green-900 dark:bg-green-950/30 dark:text-green-400"
+          >
+            ✓ {successMessage}
+          </p>
+        )}
 
         <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
           <a
