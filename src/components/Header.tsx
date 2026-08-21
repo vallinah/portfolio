@@ -1,12 +1,19 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { darkMode, toggleTheme } = useTheme();
+  const { t, i18n } = useTranslation();
 
   const closeMenu = () => {
     setIsMenuOpen(false);
+  };
+
+  const changeLanguage = (language: 'fr' | 'en') => {
+    i18n.changeLanguage(language);
+    localStorage.setItem('language', language);
   };
 
   return (
@@ -17,7 +24,7 @@ function Header() {
           onClick={closeMenu}
           className="font-heading text-xl font-bold text-slate-900 transition-colors duration-200 hover:text-blue-600 dark:text-white dark:hover:text-blue-400"
         >
-          Otisoa
+          Otisoa Vallinah
         </a>
 
         {/* Menu desktop */}
@@ -26,50 +33,77 @@ function Header() {
             href="#accueil"
             className="font-sans text-sm font-medium text-slate-600 transition-colors duration-200 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400"
           >
-            Accueil
+            {t('nav.home')}
           </a>
 
           <a
             href="#about"
             className="font-sans text-sm font-medium text-slate-600 transition-colors duration-200 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400"
           >
-            À propos
+            {t('nav.about')}
           </a>
 
           <a
             href="#skills"
             className="font-sans text-sm font-medium text-slate-600 transition-colors duration-200 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400"
           >
-            Compétences
+            {t('nav.skills')}
           </a>
 
           <a
             href="#projects"
             className="font-sans text-sm font-medium text-slate-600 transition-colors duration-200 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400"
           >
-            Projets
+            {t('nav.projects')}
           </a>
 
           <a
             href="#experience"
             className="font-sans text-sm font-medium text-slate-600 transition-colors duration-200 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400"
           >
-            Expériences
+            {t('nav.experience')}
           </a>
 
           <a
             href="#education"
             className="font-sans text-sm font-medium text-slate-600 transition-colors duration-200 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400"
           >
-            Formation
+            {t('nav.education')}
           </a>
 
           <a
             href="#contact"
             className="font-sans text-sm font-medium text-slate-600 transition-colors duration-200 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400"
           >
-            Contact
+            {t('nav.contact')}
           </a>
+
+          {/* Sélecteur de langue desktop */}
+          <div className="flex items-center gap-1 rounded-md border border-slate-200 p-1 dark:border-slate-700">
+            <button
+              type="button"
+              onClick={() => changeLanguage('fr')}
+              className={`rounded px-2 py-1 text-xs font-medium transition-colors ${
+                i18n.language === 'fr'
+                  ? 'bg-blue-600 text-white'
+                  : 'text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800'
+              }`}
+            >
+              🇫🇷 FR
+            </button>
+
+            <button
+              type="button"
+              onClick={() => changeLanguage('en')}
+              className={`rounded px-2 py-1 text-xs font-medium transition-colors ${
+                i18n.language === 'en'
+                  ? 'bg-blue-600 text-white'
+                  : 'text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800'
+              }`}
+            >
+              🇬🇧 EN
+            </button>
+          </div>
 
           {/* Bouton thème desktop */}
           <button
@@ -77,9 +111,7 @@ function Header() {
             onClick={toggleTheme}
             className="rounded-md p-2 text-slate-600 transition-colors duration-200 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
             aria-label={
-              darkMode
-                ? 'Activer le thème clair'
-                : 'Activer le thème sombre'
+              darkMode ? t('nav.lightTheme') : t('nav.darkTheme')
             }
           >
             {darkMode ? '☀️' : '🌙'}
@@ -88,15 +120,40 @@ function Header() {
 
         {/* Actions mobiles */}
         <div className="flex items-center gap-2 md:hidden">
+          {/* Sélecteur de langue mobile */}
+          <div className="flex items-center gap-1 rounded-md border border-slate-200 p-1 dark:border-slate-700">
+            <button
+              type="button"
+              onClick={() => changeLanguage('fr')}
+              className={`rounded px-2 py-1 text-xs font-medium transition-colors ${
+                i18n.language === 'fr'
+                  ? 'bg-blue-600 text-white'
+                  : 'text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800'
+              }`}
+            >
+              🇫🇷
+            </button>
+
+            <button
+              type="button"
+              onClick={() => changeLanguage('en')}
+              className={`rounded px-2 py-1 text-xs font-medium transition-colors ${
+                i18n.language === 'en'
+                  ? 'bg-blue-600 text-white'
+                  : 'text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800'
+              }`}
+            >
+              🇬🇧
+            </button>
+          </div>
+
           {/* Bouton thème mobile */}
           <button
             type="button"
             onClick={toggleTheme}
             className="rounded-md p-2 text-slate-600 transition-colors duration-200 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
             aria-label={
-              darkMode
-                ? 'Activer le thème clair'
-                : 'Activer le thème sombre'
+              darkMode ? t('nav.lightTheme') : t('nav.darkTheme')
             }
           >
             {darkMode ? '☀️' : '🌙'}
@@ -108,7 +165,7 @@ function Header() {
             className="rounded-md p-2 text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={
-              isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'
+              isMenuOpen ? t('nav.closeMenu') : t('nav.openMenu')
             }
             aria-expanded={isMenuOpen}
           >
@@ -126,7 +183,7 @@ function Header() {
               onClick={closeMenu}
               className="w-full rounded-lg px-6 py-3 text-center font-sans text-sm font-medium text-slate-600 transition-colors duration-200 hover:bg-blue-50 hover:text-blue-600 active:bg-blue-50 active:text-blue-600 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-blue-400"
             >
-              Accueil
+              {t('nav.home')}
             </a>
 
             <a
@@ -134,7 +191,7 @@ function Header() {
               onClick={closeMenu}
               className="w-full rounded-lg px-6 py-3 text-center font-sans text-sm font-medium text-slate-600 transition-colors duration-200 hover:bg-blue-50 hover:text-blue-600 active:bg-blue-50 active:text-blue-600 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-blue-400"
             >
-              À propos
+              {t('nav.about')}
             </a>
 
             <a
@@ -142,7 +199,7 @@ function Header() {
               onClick={closeMenu}
               className="w-full rounded-lg px-6 py-3 text-center font-sans text-sm font-medium text-slate-600 transition-colors duration-200 hover:bg-blue-50 hover:text-blue-600 active:bg-blue-50 active:text-blue-600 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-blue-400"
             >
-              Compétences
+              {t('nav.skills')}
             </a>
 
             <a
@@ -150,7 +207,7 @@ function Header() {
               onClick={closeMenu}
               className="w-full rounded-lg px-6 py-3 text-center font-sans text-sm font-medium text-slate-600 transition-colors duration-200 hover:bg-blue-50 hover:text-blue-600 active:bg-blue-50 active:text-blue-600 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-blue-400"
             >
-              Projets
+              {t('nav.projects')}
             </a>
 
             <a
@@ -158,7 +215,7 @@ function Header() {
               onClick={closeMenu}
               className="w-full rounded-lg px-6 py-3 text-center font-sans text-sm font-medium text-slate-600 transition-colors duration-200 hover:bg-blue-50 hover:text-blue-600 active:bg-blue-50 active:text-blue-600 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-blue-400"
             >
-              Expériences
+              {t('nav.experience')}
             </a>
 
             <a
@@ -166,7 +223,7 @@ function Header() {
               onClick={closeMenu}
               className="w-full rounded-lg px-6 py-3 text-center font-sans text-sm font-medium text-slate-600 transition-colors duration-200 hover:bg-blue-50 hover:text-blue-600 active:bg-blue-50 active:text-blue-600 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-blue-400"
             >
-              Formation
+              {t('nav.education')}
             </a>
 
             <a
@@ -174,7 +231,7 @@ function Header() {
               onClick={closeMenu}
               className="w-full rounded-lg px-6 py-3 text-center font-sans text-sm font-medium text-slate-600 transition-colors duration-200 hover:bg-blue-50 hover:text-blue-600 active:bg-blue-50 active:text-blue-600 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-blue-400"
             >
-              Contact
+              {t('nav.contact')}
             </a>
           </div>
         </div>

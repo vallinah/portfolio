@@ -1,3 +1,6 @@
+import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Header from './components/Header';
@@ -37,6 +40,33 @@ function Home() {
 }
 
 function App() {
+  const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    document.documentElement.lang = i18n.language;
+
+    document.title = t('seo.title');
+
+    document
+      .querySelector('meta[name="description"]')
+      ?.setAttribute('content', t('seo.description'));
+
+    document
+      .querySelector('meta[property="og:title"]')
+      ?.setAttribute('content', t('seo.title'));
+
+    document
+      .querySelector('meta[property="og:description"]')
+      ?.setAttribute('content', t('seo.description'));
+
+    document
+      .querySelector('meta[property="og:locale"]')
+      ?.setAttribute(
+        'content',
+        i18n.language === 'en' ? 'en_US' : 'fr_FR',
+      );
+  }, [i18n.language, t]);
+
   return (
     <ThemeProvider>
       <BrowserRouter>

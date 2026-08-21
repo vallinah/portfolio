@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Mail } from 'lucide-react';
+import { Mail, MessageCircle } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 function Contact() {
+  const { t } = useTranslation();
+
   const [errors, setErrors] = useState({
     name: '',
     email: '',
@@ -17,9 +20,7 @@ function Contact() {
       );
 
       if (messagePending === 'true') {
-        setSuccessMessage(
-          'Si votre message a bien été envoyé, il sera pris en compte. Merci !',
-        );
+        setSuccessMessage(t('contact.success'));
 
         sessionStorage.removeItem('contactMessagePending');
 
@@ -29,16 +30,11 @@ function Contact() {
       }
     };
 
-    // Vérifie au chargement de la page
     checkForPendingMessage();
 
-    // Vérifie lorsque le navigateur redonne le focus à la page
     window.addEventListener('focus', checkForPendingMessage);
-
-    // Vérifie lorsque la page est restaurée
     window.addEventListener('pageshow', checkForPendingMessage);
 
-    // Vérifie lorsque la page redevient visible
     document.addEventListener(
       'visibilitychange',
       checkForPendingMessage,
@@ -47,14 +43,17 @@ function Contact() {
     return () => {
       window.removeEventListener('focus', checkForPendingMessage);
       window.removeEventListener('pageshow', checkForPendingMessage);
+
       document.removeEventListener(
         'visibilitychange',
         checkForPendingMessage,
       );
     };
-  }, []);
+  }, [t]);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (
+    event: React.FormEvent<HTMLFormElement>,
+  ) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
@@ -70,22 +69,26 @@ function Contact() {
     };
 
     if (!name) {
-      newErrors.name = 'Veuillez renseigner votre nom.';
+      newErrors.name = t('contact.form.name.required');
     }
 
     if (!email) {
-      newErrors.email = 'Veuillez renseigner votre adresse email.';
+      newErrors.email = t('contact.form.email.required');
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      newErrors.email = 'Veuillez renseigner une adresse email valide.';
+      newErrors.email = t('contact.form.email.invalid');
     }
 
     if (!message) {
-      newErrors.message = 'Veuillez renseigner votre message.';
+      newErrors.message = t('contact.form.message.required');
     }
 
     setErrors(newErrors);
 
-    if (newErrors.name || newErrors.email || newErrors.message) {
+    if (
+      newErrors.name ||
+      newErrors.email ||
+      newErrors.message
+    ) {
       return;
     }
 
@@ -97,10 +100,8 @@ Email : ${email}
 Message :
 ${message}`;
 
-    // On mémorise que l'utilisateur a lancé un envoi
     sessionStorage.setItem('contactMessagePending', 'true');
 
-    // Ouverture de l'application de messagerie
     window.location.href = `mailto:otisoavallinah@gmail.com?subject=${encodeURIComponent(
       subject,
     )}&body=${encodeURIComponent(body)}`;
@@ -114,12 +115,11 @@ ${message}`;
       <div className="mx-auto max-w-3xl">
         <div className="text-center">
           <h2 className="font-heading text-3xl font-bold text-slate-900 dark:text-white sm:text-4xl">
-            Contact
+            {t('contact.title')}
           </h2>
 
           <p className="mx-auto mt-4 max-w-2xl font-sans text-sm leading-6 text-slate-600 dark:text-slate-400 sm:text-lg sm:leading-7">
-            Vous avez un projet ou une opportunité à me proposer ? N&apos;hésitez
-            pas à me contacter.
+            {t('contact.subtitle')}
           </p>
         </div>
 
@@ -134,7 +134,7 @@ ${message}`;
                 htmlFor="name"
                 className="font-sans text-sm font-medium text-slate-700 dark:text-slate-300"
               >
-                Nom
+                {t('contact.form.name.label')}
               </label>
 
               <input
@@ -146,7 +146,7 @@ ${message}`;
                     ? 'border-red-500 focus:border-red-500'
                     : 'border-slate-200 focus:border-blue-600 dark:border-slate-700 dark:focus:border-blue-400'
                 }`}
-                placeholder="Votre nom"
+                placeholder={t('contact.form.name.placeholder')}
               />
 
               {errors.name && (
@@ -161,7 +161,7 @@ ${message}`;
                 htmlFor="email"
                 className="font-sans text-sm font-medium text-slate-700 dark:text-slate-300"
               >
-                Email
+                {t('contact.form.email.label')}
               </label>
 
               <input
@@ -173,7 +173,7 @@ ${message}`;
                     ? 'border-red-500 focus:border-red-500'
                     : 'border-slate-200 focus:border-blue-600 dark:border-slate-700 dark:focus:border-blue-400'
                 }`}
-                placeholder="votre@email.com"
+                placeholder={t('contact.form.email.placeholder')}
               />
 
               {errors.email && (
@@ -188,7 +188,7 @@ ${message}`;
                 htmlFor="message"
                 className="font-sans text-sm font-medium text-slate-700 dark:text-slate-300"
               >
-                Message
+                {t('contact.form.message.label')}
               </label>
 
               <textarea
@@ -200,7 +200,7 @@ ${message}`;
                     ? 'border-red-500 focus:border-red-500'
                     : 'border-slate-200 focus:border-blue-600 dark:border-slate-700 dark:focus:border-blue-400'
                 }`}
-                placeholder="Votre message..."
+                placeholder={t('contact.form.message.placeholder')}
               />
 
               {errors.message && (
@@ -215,7 +215,7 @@ ${message}`;
               className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-sans font-medium text-white transition-colors duration-200 hover:bg-blue-700"
             >
               <Mail size={20} />
-              Envoyer le message
+              {t('contact.form.submit')}
             </button>
           </div>
         </form>
@@ -235,7 +235,17 @@ ${message}`;
             className="inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-6 py-3 font-sans font-medium text-slate-900 transition-colors duration-200 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800 sm:w-auto"
           >
             <Mail size={20} />
-            Email
+            {t('contact.email')}
+          </a>
+
+          <a
+            href="https://wa.me/261346994791"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-6 py-3 font-sans font-medium text-slate-900 transition-colors duration-200 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800 sm:w-auto"
+          >
+            <MessageCircle size={20} />
+            {t('contact.whatsapp')}
           </a>
 
           <a
@@ -244,7 +254,7 @@ ${message}`;
             rel="noopener noreferrer"
             className="inline-flex w-full max-w-xs items-center justify-center rounded-lg border border-slate-200 bg-white px-6 py-3 font-sans font-medium text-slate-900 transition-colors duration-200 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800 sm:w-auto"
           >
-            GitHub
+            {t('contact.github')}
           </a>
 
           <a
@@ -253,7 +263,7 @@ ${message}`;
             rel="noopener noreferrer"
             className="inline-flex w-full max-w-xs items-center justify-center rounded-lg border border-slate-200 bg-white px-6 py-3 font-sans font-medium text-slate-900 transition-colors duration-200 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800 sm:w-auto"
           >
-            LinkedIn
+            {t('contact.linkedin')}
           </a>
         </div>
       </div>

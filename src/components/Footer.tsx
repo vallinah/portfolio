@@ -1,4 +1,8 @@
+import { useTranslation } from 'react-i18next';
+
 function Footer() {
+  const { t } = useTranslation();
+
   return (
     <footer className="border-t border-slate-200 bg-white px-6 py-8 transition-colors duration-300 dark:border-slate-700 dark:bg-slate-900">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 text-center sm:flex-row sm:text-left">
@@ -7,7 +11,7 @@ function Footer() {
         </p>
 
         <p className="font-sans text-sm text-slate-500 transition-colors duration-300 dark:text-slate-500">
-          Tous droits réservés.
+          {t('footer.rights')}
         </p>
       </div>
     </footer>

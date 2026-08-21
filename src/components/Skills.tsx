@@ -1,7 +1,11 @@
+import { useTranslation } from 'react-i18next';
+
 function Skills() {
+  const { t } = useTranslation();
+
   const skillGroups = [
     {
-      title: 'Frontend',
+      title: t('skills.frontend'),
       skills: [
         'React',
         'Vue.js',
@@ -13,15 +17,15 @@ function Skills() {
       ],
     },
     {
-      title: 'Backend',
+      title: t('skills.backend'),
       skills: ['Java', 'Spring Boot', 'C#', '.NET', 'PHP', 'Laravel'],
     },
     {
-      title: 'Bases de données',
+      title: t('skills.databases'),
       skills: ['PostgreSQL', 'MySQL', 'Oracle', 'SQL Server', 'MongoDB'],
     },
     {
-      title: 'Outils',
+      title: t('skills.tools'),
       skills: ['Git', 'GitHub', 'Docker', 'Linux'],
     },
   ];
@@ -33,7 +37,7 @@ function Skills() {
     >
       <div className="mx-auto max-w-6xl">
         <h2 className="text-center font-heading text-3xl font-bold text-slate-900 transition-colors duration-300 dark:text-white sm:text-4xl">
-          Compétences
+          {t('skills.title')}
         </h2>
 
         <div className="mt-10 grid gap-5 sm:mt-12 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
