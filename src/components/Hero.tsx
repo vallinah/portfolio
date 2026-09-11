@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
 function Hero() {
-  const { t } = useTranslation();
+  const { t , i18n } = useTranslation();
 
   return (
     <section
@@ -34,8 +34,8 @@ function Hero() {
           </a>
 
           <a
-            href="/cv.pdf"
-            download
+            href={i18n.language === "en" ? "/cv-en.pdf" : "/cv-fr.pdf"}
+            download="OtisoaVallinah_CV.pdf"
             className="inline-flex w-full max-w-xs items-center justify-center rounded-lg border border-blue-600 bg-white px-6 py-3 font-sans font-medium text-blue-600 transition-colors duration-200 hover:bg-blue-50 dark:bg-slate-900 dark:hover:bg-slate-800 sm:w-auto"
           >
             {t('hero.cvButton')}
